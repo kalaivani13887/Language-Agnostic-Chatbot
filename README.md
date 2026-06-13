@@ -6,13 +6,13 @@ This project develops an AI-powered chatbot capable of understanding and respond
 
 ---
 
-##🎯 Objectives
+##🎯Objectives
 
-###✅ Build a chatbot that supports multiple languages
-###🌐 Automatically detect user language
-###💬 Generate accurate and meaningful responses
-###🤝 Improve communication across regions
-###⚡ Provide real-time multilingual assistance
+✅ Build a chatbot that supports multiple languages
+🌐 Automatically detect user language
+💬 Generate accurate and meaningful responses
+🤝 Improve communication across regions
+⚡ Provide real-time multilingual assistance
 
 ---
 
@@ -22,28 +22,28 @@ Most chatbots work effectively only in specific languages, creating communicatio
 
 ---
 
-##⚒️ Technologies Used
+##⚒️Technologies Used
 
-###🐍 Python
-###🌐 Flask
-###🎨 HTML
-###🎭 CSS
-###⚡ JavaScript
-###🧠 Natural Language Processing (NLP)
-###🤖 Machine Learning
-###🌍 Google Translate API / Translator Library
-###📊 Scikit-Learn
-###🚀 TensorFlow (Optional)
+🐍 Python
+🌐 Flask
+🎨 HTML
+🎭 CSS
+⚡ JavaScript
+🧠 Natural Language Processing (NLP)
+🤖 Machine Learning
+🌍 Google Translate API / Translator Library
+📊 Scikit-Learn
+🚀 TensorFlow (Optional)
 ---
 
 ##📂 System Modules
 
 ##👤 User Module
 
-###📝 Enter text in any language
-###💬 Receive chatbot responses
-###🌐 Translate responses automatically
-###📜 Chat history management
+📝 Enter text in any language
+💬 Receive chatbot responses
+🌐 Translate responses automatically
+📜 Chat history management
 
 ##⚙️ Admin Module
 
@@ -54,42 +54,42 @@ Update language support
 
 ---
 
-##🎯 Benefits
+##🎯Benefits
 
-###🌍 Supports multiple languages
+🌍 Supports multiple languages
  Easy communication
-###♿ Improves accessibility
-###⚡ Real-time interaction
-###🚀 Reduces language barriers
+♿ Improves accessibility
+⚡ Real-time interaction
+🚀 Reduces language barriers
 
 ---
 
-##🚀 Future Enhancements
+##🚀Future Enhancements
 
-###🎤 Voice-to-text support
-###🗣️ Speech recognition
-###📱 Mobile application integration
-###🤖 AI recommendation system
-###☁️ Cloud deployment
+🎤 Voice-to-text support
+🗣️ Speech recognition
+📱 Mobile application integration
+🤖 AI recommendation system
+☁️ Cloud deployment
 
 ---
 
-##💻 Installation
+##💻Installation
 
 Prerequisites
 
-###🐍 Python 3.x
-###🌐 Flask
-###💻 VS Code
-###🌍 Browser
+🐍 Python 3.x
+🌐 Flask
+💻 VS Code
+🌍 Browser
 
 ##Steps
 
-###1️⃣ Download or clone repository
-###2️⃣ Install required libraries
-###3️⃣ Run application
-###4️⃣ Open browser
-###5️⃣ Start chatting
+1️⃣ Download or clone repository
+2️⃣ Install required libraries
+3️⃣ Run application
+4️⃣ Open browser
+5️⃣ Start chatting
 
 ---
 
@@ -111,12 +111,12 @@ Language-Agnostic-Chatbot/
 
 ##📋 Requirements
 
-###🐍 Python
-###🌐 Flask
-###📊 Pandas
-###🔢 NumPy
-###🤖 Scikit-learn
-###🌍 Translator API
+🐍 Python
+🌐 Flask
+📊 Pandas
+🔢 NumPy
+🤖 Scikit-learn
+🌍 Translator API
 
 ---
 
@@ -135,11 +135,11 @@ Language-Agnostic-Chatbot/
 
 ##🌟 Real-World Implementation
 
-###🏥 Hospitals
-###🎓 Educational Platforms
-###🎧 Customer Support
-###✈️ Travel Services
-###🌍 Multilingual Communication Applications
+🏥 Hospitals
+🎓 Educational Platforms
+🎧 Customer Suppor
+✈️ Travel Services
+🌍 Multilingual Communication Applications
 
 ---
 
