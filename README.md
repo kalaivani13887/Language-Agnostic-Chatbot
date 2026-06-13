@@ -90,7 +90,7 @@ This project solves this issue using an AI-driven **Language Agnostic Chatbot**.
 
 ---
 
- UI DESIGN
+ ## UI DESIGN
 
 Login Screen:
 - Username / Email  
@@ -100,7 +100,7 @@ Login Screen:
 
 ---
 
-##Chat Interface
+Chat Interface:
 - Real-time chat window  
 - AI response messages  
 - Auto language detection display  
