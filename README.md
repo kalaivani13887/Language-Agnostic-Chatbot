@@ -80,17 +80,17 @@ This project solves this issue using an AI-driven **Language Agnostic Chatbot**.
 
 ## System Features
 
-- 🌍 Multi-language support  
-- 🔍 Automatic language detection  
-- 🤖 AI-based response generation  
-- 🔄 Real-time translation  
-- 💬 Conversation history tracking  
-- 📊 Analytics dashboard  
-- 🔐 Secure authentication system  
+- Multi-language support  
+- Automatic language detection  
+- AI-based response generation  
+- Real-time translation  
+- Conversation history tracking  
+- Analytics dashboard  
+- Secure authentication system  
 
 ---
 
-## UI DESIGN
+ UI DESIGN
 
 Login Screen:
 - Username / Email  
@@ -109,7 +109,7 @@ Login Screen:
 
 ---
 
-### 📊 Admin Dashboard
+Admin Dashboard
 - Total users  
 - Active chats  
 - Language usage analytics  
@@ -118,7 +118,7 @@ Login Screen:
 
 ---
 
-## 🧭 Navigation Structure
+## Navigation Structure
 
 - Dashboard  
 - New Chat  
@@ -130,9 +130,9 @@ Login Screen:
 
 ---
 
-# 💻 Frontend Environment Setup
+# Frontend Environment Setup
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 | Component | Technology |
 |----------|------------|
@@ -146,20 +146,20 @@ Login Screen:
 
 ---
 
-## 🎯 Frontend Features
+## Frontend Features
 
-- ⚡ Real-time chat interface  
-- 🌍 Multi-language UI support  
-- 🔍 Auto language detection display  
-- 💬 Chat history panel  
-- ⌨️ AI typing indicator  
-- 🎤 Voice input support  
-- 📱 Fully responsive design  
-- 🌙 Dark / Light mode support  
+- Real-time chat interface  
+- Multi-language UI support  
+- Auto language detection display  
+- Chat history panel  
+- AI typing indicator  
+- Voice input support  
+- Fully responsive design  
+- Dark / Light mode support  
 
 ---
 
-## 🔐 Security Features
+## Security Features
 
 - JWT Authentication  
 - Encrypted communication  
@@ -169,44 +169,44 @@ Login Screen:
 
 ---
 
-## 📈 Design Review
+## Design Review
 
-### ✔️ Usability
+Usability:
 - Simple UI design  
 - Easy chat interaction  
 - Mobile-friendly layout  
 - Multi-language support  
 
-### ⚡ Performance
+Performance:
 - Fast API responses  
 - Optimized NLP processing  
 - Real-time messaging via Socket.IO  
 
-### 🔐 Security
+Security:
 - Secure authentication  
 - Data encryption  
 - Protected APIs  
 
-### 📊 Scalability
+Scalability:
 - Microservice-ready architecture  
 - Cloud deployment support  
 - Multi-model AI integration  
 
 ---
 
-## 🚀 Future Enhancements
+## Future Enhancements
 
-- 🎤 Voice-based AI assistant  
-- 📱 Mobile application  
-- 💬 WhatsApp / Telegram integration  
-- 🌍 Offline translation mode  
-- 😊 Emotion-aware responses  
-- 🧠 AI model fine-tuning  
-- 📊 Advanced analytics dashboard  
+- Voice-based AI assistant  
+- Mobile application  
+- WhatsApp / Telegram integration  
+- Offline translation mode  
+- Emotion-aware responses  
+- AI model fine-tuning  
+- Advanced analytics dashboard  
 
 ---
 
-## 📌 Final Outcome
+## Final Outcome
 
 The Language Agnostic Chatbot enables seamless multilingual communication using AI, NLP, and real-time translation technologies, removing language barriers and improving global accessibility.
 
