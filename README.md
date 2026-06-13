@@ -212,11 +212,3 @@ The Language Agnostic Chatbot enables seamless multilingual communication using 
 
 ---
 
-## ⭐ Support
-
-If you like this project:
-- ⭐ Star this repository  
-- 🍴 Fork it  
-- 📢 Share it  
-
----
