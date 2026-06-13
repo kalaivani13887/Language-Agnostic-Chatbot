@@ -83,4 +83,130 @@ The Language Agnostic Chatbot requires a centralized database to manage users, c
 | Audit_Logs           | Stores system activity logs  |
 
 ---
-
+Database Schema Design
+The Language Agnostic Chatbot System requires a centralized database to store user messages, multilingual inputs, language detection results, AI responses, translation mappings, user profiles, and conversation history. The system is designed to support real-time multilingual conversations, AI-driven responses, and cross-language communication.
+Entity Relationships
+One User can have multiple Conversations
+One Conversation can contain multiple Messages
+One Message can have multiple Translations
+One Language can be associated with many Messages
+One AI Model can generate multiple Responses
+One Admin can monitor multiple Conversations
+Database Tables
+Table Name
+Description
+Users
+Stores user login and profile details
+Roles
+Stores user roles (User, Admin, Moderator)
+Conversations
+Stores chat sessions
+Messages
+Stores user and bot messages
+Message_Translations
+Stores translated versions of messages
+Language_Detection
+Stores detected language of input text
+AI_Responses
+Stores chatbot generated replies
+Knowledge_Base
+Stores FAQ / domain knowledge
+Intent_Recognition
+Stores detected user intent
+Feedback
+Stores user feedback on responses
+Notifications
+Stores system alerts
+Audit_Logs
+Stores system activity logs
+UI Wireframe Design
+The UI is designed to be simple, fast, and multilingual-friendly.
+Main Wireframes
+Login Screen
+Email / Mobile Number
+Password
+Login Button
+Register Option
+Chat Dashboard
+Conversation List
+New Chat Button
+Language Selector (Auto Detect / Manual)
+Search Chat History
+Chat Interface
+Message Input Box
+Send Button
+Voice Input Option 🎤
+Real-time AI Response
+Translation Toggle (View Original / Translated)
+Language Detection Screen
+Input Text
+Detected Language Display
+Confidence Score
+Translation Preview
+Admin Dashboard
+Active Users
+Total Conversations
+Language Usage Analytics
+AI Response Performance
+Error Logs
+Navigation and Form Design
+Navigation Menu
+Dashboard
+New Chat
+Conversations
+Language Settings
+AI Insights
+Feedback
+Profile
+Logout
+User Registration Form
+Fields:
+Username
+Email / Mobile Number
+Preferred Language
+Country
+Password
+Feedback Form
+Fields:
+Rating ⭐
+Response Quality (Good / Average / Poor)
+Comments
+Submit
+Design Review
+Usability
+Simple chat-based interface
+Auto language detection
+Mobile-friendly design
+Voice + text support
+Performance
+Fast AI response generation
+Real-time translation
+Low-latency chat updates
+Security
+Secure authentication
+Encrypted chat storage
+Role-based access control
+Activity monitoring
+Scalability
+Supports multiple languages
+Cloud-based AI integration
+Expandable knowledge base
+Large-scale user support
+Frontend Environment Setup
+Technology Stack
+Component
+Technology
+Frontend Framework
+React.js
+Styling
+Tailwind CSS
+API Communication
+Axios
+Routing
+React Router
+State Management
+Redux Toolkit
+Chat Engine
+Socket.io
+Build Tool
+Vite
