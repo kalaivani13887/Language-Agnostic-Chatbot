@@ -1,6 +1,6 @@
-# 🌐 Language Agnostic Chatbot
+# Language Agnostic Chatbot
 
-## 🚀 Project Overview
+## Project Overview
 
 The **Language Agnostic Chatbot** is an AI-powered multilingual communication platform designed to enable seamless interaction between users in different languages without requiring manual language selection.
 
@@ -21,13 +21,13 @@ It is suitable for:
 
 ---
 
-## 🎯 Objective
+## Objective
 
 To build an intelligent chatbot system that enables multilingual communication through automatic language detection and AI-powered response generation.
 
 ---
 
-## ❗ Problem Statement
+## Problem Statement
 
 Most chatbot systems require users to manually select a language, creating barriers in multilingual environments.
 
@@ -35,7 +35,7 @@ This project solves this issue using an AI-driven **Language Agnostic Chatbot**.
 
 ---
 
-## 🧩 System Modules
+## System Modules
 
 - User Management Module  
 - Language Detection Module  
@@ -49,7 +49,7 @@ This project solves this issue using an AI-driven **Language Agnostic Chatbot**.
 
 ---
 
-## 🔄 System Workflow
+## System Workflow
 
 1. User sends a message  
 2. System detects language automatically  
@@ -62,7 +62,7 @@ This project solves this issue using an AI-driven **Language Agnostic Chatbot**.
 
 ---
 
-## 🗄️ Database Design
+## Database Design
 
 | Table Name | Description |
 |------------|-------------|
@@ -78,7 +78,7 @@ This project solves this issue using an AI-driven **Language Agnostic Chatbot**.
 
 ---
 
-## 🧠 System Features
+## System Features
 
 - 🌍 Multi-language support  
 - 🔍 Automatic language detection  
@@ -90,9 +90,9 @@ This project solves this issue using an AI-driven **Language Agnostic Chatbot**.
 
 ---
 
-## 🖥️ UI DESIGN
+## UI DESIGN
 
-### 🔐 Login Screen
+Login Screen:
 - Username / Email  
 - Password  
 - Login Button  
@@ -100,7 +100,7 @@ This project solves this issue using an AI-driven **Language Agnostic Chatbot**.
 
 ---
 
-### 💬 Chat Interface
+##Chat Interface
 - Real-time chat window  
 - AI response messages  
 - Auto language detection display  
