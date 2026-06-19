@@ -1,85 +1,87 @@
-## ============================================================
+# ============================================================
 # login.py
 # LOGIN PAGE MODULE
 #
 # This file contains only Login Page UI and logic.
 # It is imported and used by app.py
-# ==========================================================        ============================================================
+# ============================================================
 
 import streamlit as st
 import auth
 
+
 def validate_login(username, password):
 
-if not username:
-    return False, "Enter Username"
+    if not username:
+        return False, "Enter Username"
 
-if not password:
-    return False, "Enter Password"
+    if not password:
+        return False, "Enter Password"
 
-return True, "Valid"
+    return True, "Valid"
+
 
 def show_login_page():
-"""
-Renders Login Page
-"""
+    """
+    Renders Login Page
+    """
 
-st.markdown("""
-<div class="welcome-card">
-    <h3>🔐 Login</h3>
-    <p>Login to access chatbot</p>
-</div>
-""", unsafe_allow_html=True)
+    st.markdown("""
+    <div class="welcome-card">
+        <h3>🔐 Login</h3>
+        <p>Login to access chatbot</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-username = st.text_input("Username")
+    username = st.text_input("Username")
 
-password = st.text_input(
-    "Password",
-    type="password"
-)
+    password = st.text_input(
+        "Password",
+        type="password"
+    )
 
-col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2)
 
-with col1:
+    with col1:
 
-    if st.button("Login"):
+        if st.button("Login"):
 
-        valid, msg = validate_login(
-            username,
-            password
-        )
-
-        if valid:
-
-            user = auth.login_user(
+            valid, msg = validate_login(
                 username,
                 password
             )
 
-            if user:
+            if valid:
 
-                st.session_state.logged_in = True
-                st.session_state.username = username
-                st.session_state.full_name = user
+                user = auth.login_user(
+                    username,
+                    password
+                )
 
-                st.session_state.page = "dashboard"
+                if user:
 
-                st.rerun()
+                    st.session_state.logged_in = True
+                    st.session_state.username = username
+                    st.session_state.full_name = user
+
+                    st.session_state.page = "dashboard"
+
+                    st.rerun()
+
+                else:
+
+                    st.error(
+                        "Invalid Username or Password"
+                    )
 
             else:
 
-                st.error(
-                    "Invalid Username or Password"
-                )
+                st.warning(msg)
 
-        else:
+    with col2:
 
-            st.warning(msg)
+        if st.button("Create Account"):
 
-with col2:
+            st.session_state.page = "register"
 
-    if st.button("Create Account"):
-
-        st.session_state.page = "register"
-
-        st.rerun()
+            st.rerun()
