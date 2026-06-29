@@ -2,14 +2,16 @@ import streamlit as st
 import json
 import os
 import hashlib
+import requests
+from langdetect import detect
 
 # =========================
-# USER DATABASE FILE
+# USER DB
 # =========================
 USER_DB = "users.json"
 
 # =========================
-# PASSWORD HASH
+# HASH PASSWORD
 # =========================
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
@@ -22,8 +24,11 @@ def load_users():
         with open(USER_DB, "w") as f:
             json.dump({}, f)
 
-    with open(USER_DB, "r") as f:
-        return json.load(f)
+    try:
+        with open(USER_DB, "r") as f:
+            return json.load(f)
+    except:
+        return {}
 
 # =========================
 # SAVE USERS
@@ -33,7 +38,7 @@ def save_users(users):
         json.dump(users, f, indent=2)
 
 # =========================
-# REGISTER USER
+# REGISTER
 # =========================
 def register_user(full_name, username, password):
     users = load_users()
@@ -50,7 +55,7 @@ def register_user(full_name, username, password):
     return True
 
 # =========================
-# LOGIN USER
+# LOGIN
 # =========================
 def login_user(username, password):
     users = load_users()
@@ -64,7 +69,40 @@ def login_user(username, password):
     return None
 
 # =========================
-# INIT SESSION STATE
+# LANGUAGE DETECTION
+# =========================
+def detect_language(text):
+    try:
+        return detect(text)
+    except:
+        return "en"
+
+# =========================
+# AI CHATBOT
+# =========================
+def get_ai_response(prompt):
+    lang = detect_language(prompt)
+
+    API_URL = "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill"
+
+    payload = {
+        "inputs": f"""
+You are a multilingual AI chatbot.
+Reply in SAME language as user.
+
+Language: {lang}
+Message: {prompt}
+"""
+    }
+
+    try:
+        response = requests.post(API_URL, json=payload)
+        return response.json()[0]["generated_text"]
+    except:
+        return "AI not responding right now."
+
+# =========================
+# SESSION INIT
 # =========================
 if "page" not in st.session_state:
     st.session_state.page = "login"
@@ -72,21 +110,16 @@ if "page" not in st.session_state:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# =========================
-# PAGE UI
-# =========================
 st.set_page_config(page_title="AI Chatbot App", layout="centered")
-
 st.title("🤖 AI Chatbot System")
 
 # =========================
-# LOGOUT FUNCTION
+# LOGOUT
 # =========================
 def logout():
-    st.session_state.logged_in = False
-    st.session_state.page = "login"
-    st.session_state.username = None
-    st.session_state.full_name = None
+    for key in list(st.session_state.keys()):
+        del st.session_state[key]
+    st.rerun()
 
 # =========================
 # DASHBOARD
@@ -97,15 +130,40 @@ def dashboard():
     if "chat_count" not in st.session_state:
         st.session_state.chat_count = 0
 
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+
     st.metric("Total Chats", st.session_state.chat_count)
 
-    if st.button("➕ Increase Chat Count"):
-        st.session_state.chat_count += 1
-        st.rerun()
+    # CHAT HISTORY
+    for msg in st.session_state.messages:
+        if msg["role"] == "user":
+            st.write("🧑 You:", msg["text"])
+        else:
+            st.write("🤖 AI:", msg["text"])
+
+    user_input = st.text_input("Type message")
+
+    if st.button("Send"):
+        if user_input:
+
+            st.session_state.messages.append({
+                "role": "user",
+                "text": user_input
+            })
+
+            reply = get_ai_response(user_input)
+
+            st.session_state.messages.append({
+                "role": "ai",
+                "text": reply
+            })
+
+            st.session_state.chat_count += 1
+            st.rerun()
 
     if st.button("🚪 Logout"):
         logout()
-        st.rerun()
 
 # =========================
 # LOGIN PAGE
@@ -117,18 +175,14 @@ def login_page():
     password = st.text_input("Password", type="password")
 
     if st.button("Login"):
-        if not username or not password:
-            st.warning("Fill all fields")
-        else:
-            user = login_user(username, password)
+        user = login_user(username, password)
 
-            if user:
-                st.session_state.logged_in = True
-                st.session_state.username = username
-                st.session_state.full_name = user
-                st.rerun()
-            else:
-                st.error("Invalid credentials")
+        if user:
+            st.session_state.logged_in = True
+            st.session_state.full_name = user
+            st.rerun()
+        else:
+            st.error("Invalid credentials")
 
     if st.button("Create Account"):
         st.session_state.page = "register"
@@ -145,19 +199,14 @@ def register_page():
     password = st.text_input("Password", type="password")
 
     if st.button("Register"):
-        if not full_name or not username or not password:
-            st.warning("Fill all fields")
+        if register_user(full_name, username, password):
+            st.success("Account created successfully")
+            st.session_state.page = "login"
+            st.rerun()
         else:
-            success = register_user(full_name, username, password)
+            st.error("Username already exists")
 
-            if success:
-                st.success("Account created successfully")
-                st.session_state.page = "login"
-                st.rerun()
-            else:
-                st.error("Username already exists")
-
-    if st.button("Back to Login"):
+    if st.button("Back"):
         st.session_state.page = "login"
         st.rerun()
 
@@ -165,11 +214,9 @@ def register_page():
 # ROUTING
 # =========================
 if not st.session_state.logged_in:
-
     if st.session_state.page == "login":
         login_page()
     else:
         register_page()
-
 else:
     dashboard()
