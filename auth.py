@@ -1,10 +1,9 @@
-============================================================
+# ============================================================
+# auth.py
+# Handles Registration, Login, and User Storage
+# Used by app.py - do not run this file directly
+# ============================================================
 
-auth.py
-
-Handles Registration, Login and User Storage
-
-============================================================
 
 import json
 import os
