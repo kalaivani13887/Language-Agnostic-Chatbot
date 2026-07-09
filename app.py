@@ -4,11 +4,15 @@ import os
 import hashlib
 import requests
 from langdetect import detect
+import google.generativeai as genai
 
 # =========================
 # USER DB
 # =========================
 USER_DB = "users.json"
+CHAT_DB = "chat_history.json"
+
+
 
 # =========================
 # HASH PASSWORD
@@ -36,7 +40,31 @@ def load_users():
 def save_users(users):
     with open(USER_DB, "w") as f:
         json.dump(users, f, indent=2)
+# =========================
+# CHAT HISTORY
+# =========================
+def load_chat_history():
+    if not os.path.exists(CHAT_DB):
+        with open(CHAT_DB, "w") as f:
+            json.dump([], f)
 
+    try:
+        with open(CHAT_DB, "r") as f:
+            return json.load(f)
+    except:
+        return []
+
+def save_chat(username, user_message, bot_response):
+    chats = load_chat_history()
+
+    chats.append({
+        "username": username,
+        "user_message": user_message,
+        "bot_response": bot_response
+    })
+
+    with open(CHAT_DB, "w") as f:
+        json.dump(chats, f, indent=2)
 # =========================
 # REGISTER
 # =========================
@@ -68,7 +96,7 @@ def login_user(username, password):
 
     return None
 
-# =========================
+# =========================# =========================
 # LANGUAGE DETECTION
 # =========================
 def detect_language(text):
@@ -77,29 +105,34 @@ def detect_language(text):
     except:
         return "en"
 
+
+
+genai.configure(api_key="AIza........")
+
+model = genai.GenerativeModel("gemini-2.5-flash")
+
+
+
 # =========================
 # AI CHATBOT
 # =========================
 def get_ai_response(prompt):
     lang = detect_language(prompt)
 
-    API_URL = "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill"
-
-    payload = {
-        "inputs": f"""
+    try:
+        response = model.generate_content(
+            f"""
 You are a multilingual AI chatbot.
-Reply in SAME language as user.
+Reply in the SAME language as the user.
 
 Language: {lang}
-Message: {prompt}
+User: {prompt}
 """
-    }
+        )
+        return response.text
 
-    try:
-        response = requests.post(API_URL, json=payload)
-        return response.json()[0]["generated_text"]
-    except:
-        return "AI not responding right now."
+    except Exception as e:
+        return f"AI Error: {e}"
 
 # =========================
 # SESSION INIT
@@ -121,6 +154,7 @@ def logout():
         del st.session_state[key]
     st.rerun()
 
+
 # =========================
 # DASHBOARD
 # =========================
@@ -135,7 +169,7 @@ def dashboard():
 
     st.metric("Total Chats", st.session_state.chat_count)
 
-    # CHAT HISTORY
+    # Show current chat
     for msg in st.session_state.messages:
         if msg["role"] == "user":
             st.write("🧑 You:", msg["text"])
@@ -154,6 +188,8 @@ def dashboard():
 
             reply = get_ai_response(user_input)
 
+            save_chat(st.session_state.full_name, user_input, reply)
+
             st.session_state.messages.append({
                 "role": "ai",
                 "text": reply
@@ -162,9 +198,31 @@ def dashboard():
             st.session_state.chat_count += 1
             st.rerun()
 
+    # View Chat History
+    if st.button("📜 View Chat History"):
+        chats = load_chat_history()
+
+        if len(chats) == 0:
+            st.info("No chat history found.")
+        else:
+            for chat in chats:
+                st.write("👤", chat["username"])
+                st.write("🧑 You:", chat["user_message"])
+                st.write("🤖 AI:", chat["bot_response"])
+                st.write("------------------------")
+
+    # Clear Chat History
+    if st.button("🗑️ Clear Chat History"):
+        with open(CHAT_DB, "w") as f:
+            json.dump([], f)
+
+        st.success("Chat history cleared successfully!")
+
+    # Logout
     if st.button("🚪 Logout"):
         logout()
 
+    
 # =========================
 # LOGIN PAGE
 # =========================
